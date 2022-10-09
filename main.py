@@ -3,6 +3,7 @@ from random import randint
 import turtle
 
 
+
 class Point:
 
     def __init__(self, x, y):
@@ -48,6 +49,8 @@ class Rectangle:
         return res1 * res2
 
 
+
+    
 class GuiRectangle(Rectangle):
 
     def draw(self, canvas):
@@ -66,8 +69,11 @@ class GuiRectangle(Rectangle):
         canvas.left(90)
         canvas.forward(vertical_distance)
 
-        #turtle.done() # this doesnt close canvas before we draw the point
+        #turtle.done() # this closes canvas before we draw the point
 
+        
+        
+        
 class GuiPoint(Point):
 
     def draw(self, canvas):
@@ -101,20 +107,8 @@ gui_point.draw(canvas=myturtle)
 
 
 
+#print("---------------------------------------------------------------")
 
-
-
-
-
-
-
-
-
-
-
-
-
-#
 # print("r4 LowerLeft  (", p10.x, ",", p10.y, ")")
 # print("r4 UpperRight (", p11.x, ",", p11.y, ")")
 #
@@ -130,34 +124,6 @@ gui_point.draw(canvas=myturtle)
 #
 # print("Area you guessed: ", a_user)
 # print("Actual area of the Rectangle: ", r4.area())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # p1 = Point(1, 1)
