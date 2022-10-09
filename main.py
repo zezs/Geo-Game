@@ -1,7 +1,6 @@
 import math
-from tkinter import Y
-from geometry import PPoint
 from random import randint
+import turtle
 
 
 class Point:
@@ -35,6 +34,8 @@ class Point:
         return math.sqrt(res1 + res2)
 
 
+
+
 class Rectangle:
 
     def __init__(self, bottomleft, topright):
@@ -44,28 +45,108 @@ class Rectangle:
     def area(self):
         res1 = (self.topright.x - self.bottomleft.x)
         res2 = (self.topright.y - self.bottomleft.y)
-        return res1*res2
+        return res1 * res2
+
+
+class GuiRectangle(Rectangle):
+
+    def draw(self, canvas):
+        vertical_distance = self.topright.y - self.bottomleft.y
+        horizontal_distance = self.topright.x - self.bottomleft.x
+
+        myturtle.penup()
+        canvas.goto(self.bottomleft.x, self.bottomleft.y)
+        myturtle.pendown()
+
+        canvas.forward(horizontal_distance)
+        canvas.left(90)
+        canvas.forward(vertical_distance)
+        canvas.left(90)
+        canvas.forward(horizontal_distance)
+        canvas.left(90)
+        canvas.forward(vertical_distance)
+
+        #turtle.done() # this doesnt close canvas before we draw the point
+
+class GuiPoint(Point):
+
+    def draw(self, canvas):
+        canvas.penup()
+        canvas.goto(self.x, self.y)
+        canvas.pendown()
+        canvas.dot(size=10)
+
+        turtle.done()
+
 
 print("***********************************************************************************")
-p10 = Point(randint(1, 5), randint(1, 5))
-p11 = Point(randint(5, 10), randint(5, 10))
-r4 = Rectangle(p10, p11)
 
-print("r4 LowerLeft  (", p10.x, ",", p10.y, ")")
-print("r4 UpperRight (", p11.x, ",", p11.y, ")")
+p10 = Point(randint(0, 200), randint(0, 200))
+p11 = Point(randint(200, 400), randint(200, 400))
+gui_rectangle = GuiRectangle(p10, p11)
 
+print("Rectangle's Bottom left co-ordinate: ", gui_rectangle.bottomleft.x, gui_rectangle.bottomleft.y)
+print("Rectangle's Top right coordinate: ", gui_rectangle.topright.x, gui_rectangle.topright.y)
+
+print("Guess a point within the rectangle range\n")
 x = int(input("Enter x: "))
 y = int(input("Enter y: "))
-
 p_user = Point(x, y)
+gui_point = GuiPoint(p_user.x, p_user.y)
 
-print(p_user.falls_in_rectangle(r4))
-print("------AREA--------")
 
-a_user = int(input("Guess the area: "))
+myturtle = turtle.Turtle()
+gui_rectangle.draw(canvas=myturtle)
+gui_point.draw(canvas=myturtle)
 
-print("Area you guessed: ", a_user)
-print("Actual area of the Rectangle: ", r4.area())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# print("r4 LowerLeft  (", p10.x, ",", p10.y, ")")
+# print("r4 UpperRight (", p11.x, ",", p11.y, ")")
+#
+# x = int(input("Enter x: "))
+# y = int(input("Enter y: "))
+#
+# p_user = Point(x, y)
+#
+# print(p_user.falls_in_rectangle(r4))
+# print("------AREA--------")
+#
+# a_user = int(input("Guess the area: "))
+#
+# print("Area you guessed: ", a_user)
+# print("Actual area of the Rectangle: ", r4.area())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
